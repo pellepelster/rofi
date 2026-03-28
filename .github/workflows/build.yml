@@ -49,6 +49,12 @@ jobs:
         with:
           cc: gcc
           xcb: disabled
+      - id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: release_tarballs-${{ github.ref_name }}
+          path: |
+            builddir/*
   build-gcc-xcb-only:
     runs-on: ubuntu-latest
     steps:
