@@ -2,8 +2,8 @@ name: Publish release
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - 'next'
 
 jobs:
   publish-tarball:
@@ -13,7 +13,12 @@ jobs:
         with:
           submodules: recursive
       - uses: ./.github/actions/setup
+        with:
+          xcb: 'false'
+          wayland: 'true'
       - uses: ./.github/actions/meson
         with:
           cc: gcc
+          xcb: 'disabled'
+          wayland: 'enabled'
       - uses: ./.github/actions/release
